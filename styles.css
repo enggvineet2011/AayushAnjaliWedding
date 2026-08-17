@@ -1068,7 +1068,7 @@ body.postcard-open .site-footer {
 
   .postcard-back {
     width: 100%;
-    padding: 1rem 1rem 0.75rem;
+    padding: 1rem 1.5rem 1.5rem;
     height: calc(100dvh - 1.5rem);
     max-height: calc(100dvh - 1.5rem);
   }
