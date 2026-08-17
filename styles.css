@@ -230,6 +230,8 @@ textarea {
   text-align: center;
   margin-bottom: 0.6rem;
   flex-shrink: 0;
+  padding-right: 3rem;
+  padding-left: 3rem;
 }
 
 .postcard-header h1 {
