@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Aayush and Anjali are getting married on 18 January 2027 in Palampur, Himachal Pradesh. Join us for our engagement and wedding celebration."
+    />
+    <title>Aayush & Anjali | Wedding Invitation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="postcard-container">
+      <!-- Postcard Front -->
+      <div class="postcard postcard-front" id="postcardFront">
+        <div class="postcard-overlay"></div>
+        <div class="postcard-content">
+          <p class="eyebrow">You're Invited</p>
+          <h1>Aayush <span>&</span> Anjali</h1>
+          <p class="tagline">Celebrate love in the mountains</p>
+          <p class="stamp">Click to Open</p>
+        </div>
+      </div>
+
+      <!-- Postcard Back (Main Content) -->
+      <div class="postcard postcard-back" id="postcardBack">
+        <button class="close-card" aria-label="Close card">&times;</button>
+        
+        <div class="postcard-header">
+          <h1>
+            <span>Aayush</span>
+            <span class="symbol">&</span>
+            <span>Anjali</span>
+          </h1>
+          <p class="sub-heading">Invite you to celebrate a beautiful beginning</p>
+          
+          <div class="countdown-box" aria-label="Countdown to the wedding">
+            <div class="countdown-item">
+              <span id="days">00</span>
+              <small>Days</small>
+            </div>
+            <div class="countdown-item">
+              <span id="hours">00</span>
+              <small>Hours</small>
+            </div>
+            <div class="countdown-item">
+              <span id="minutes">00</span>
+              <small>Minutes</small>
+            </div>
+            <div class="countdown-item">
+              <span id="seconds">00</span>
+              <small>Seconds</small>
+            </div>
+          </div>
+
+          <!-- Progress Indicator -->
+          <div class="progress-dots">
+            <span class="dot active" data-section="0"></span>
+            <span class="dot" data-section="1"></span>
+            <span class="dot" data-section="2"></span>
+            <span class="dot" data-section="3"></span>
+            <span class="dot" data-section="4"></span>
+            <span class="dot" data-section="5"></span>
+          </div>
+        </div>
+
+        <!-- Content Sections -->
+        <div class="section-content">
+          <!-- Story Section -->
+          <section class="content-section active" id="story" data-index="0">
+            <div class="section-heading">
+              <p class="eyebrow accent">Our Story</p>
+              <h2>From a single match to a forever promise</h2>
+            </div>
+            <div class="story-content">
+              <p>
+                Aayush and Anjali first met on a matrimonial site and instantly connected — not only with each other,
+                but with the hope of building a life rooted in love, respect, and shared dreams.
+              </p>
+              <p>
+                Their journey has been filled with laughter, warmth, countless meaningful conversations, and the quiet certainty
+                that they had found a forever home in each other. We invite you to witness this joyful new chapter as they embark on
+                their wedding journey together.
+              </p>
+              <div class="quote-card">
+                "Love is not just in the meeting, but in the way two hearts choose each other every day."
+              </div>
+              <div class="story-photo">
+                <img
+                  src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=900&q=80"
+                  alt="Couple smiling together"
+                />
+              </div>
+            </div>
+          </section>
+
+          <!-- Schedule Section -->
+          <section class="content-section" id="schedule" data-index="1">
+            <div class="section-heading">
+              <p class="eyebrow accent">Celebrations</p>
+              <h2>Events & itinerary</h2>
+            </div>
+            <div class="timeline">
+              <article class="timeline-item">
+                <div class="event-date">
+                  <span>17</span>
+                  <small>Jan 2027</small>
+                </div>
+                <div class="event-details">
+                  <h3>Engagement Celebration</h3>
+                  <ul>
+                    <li><strong>Time:</strong> 4:00 PM onwards</li>
+                    <li><strong>Venue:</strong> A serene mountain resort in Palampur</li>
+                    <li><strong>Highlights:</strong> Ring ceremony, family blessings, welcome drinks, and a special dinner</li>
+                  </ul>
+                </div>
+              </article>
+
+              <article class="timeline-item">
+                <div class="event-date">
+                  <span>18</span>
+                  <small>Jan 2027</small>
+                </div>
+                <div class="event-details">
+                  <h3>Wedding Day</h3>
+                  <ul>
+                    <li><strong>10:00 AM:</strong> Welcome & refreshments</li>
+                    <li><strong>12:00 PM:</strong> Wedding rituals & vows</li>
+                    <li><strong>2:30 PM:</strong> Family lunch and blessings</li>
+                    <li><strong>6:30 PM:</strong> Reception & music night</li>
+                  </ul>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- Gallery Section -->
+          <section class="content-section" id="gallery" data-index="2">
+            <div class="section-heading">
+              <p class="eyebrow accent">Moments</p>
+              <h2>Snapshots of our journey</h2>
+            </div>
+            <div class="gallery-grid">
+              <figure class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=80" alt="Couple walking together" />
+              </figure>
+              <figure class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988c2477c?auto=format&fit=crop&w=700&q=80" alt="Bride and groom smiling" />
+              </figure>
+              <figure class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=700&q=80" alt="Happy couple under flowers" />
+              </figure>
+              <figure class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1200&q=80" alt="Couple at sunset" />
+              </figure>
+              <figure class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1525182008055-f88b95ff7980?auto=format&fit=crop&w=700&q=80" alt="Couple embracing in mountains" />
+              </figure>
+              <figure class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=700&q=80" alt="Bride and groom posing outdoors" />
+              </figure>
+            </div>
+          </section>
+
+          <!-- Travel Section -->
+          <section class="content-section" id="travel" data-index="3">
+            <div class="section-heading">
+              <p class="eyebrow accent">Plan Your Visit</p>
+              <h2>Travel details</h2>
+            </div>
+            <div class="info-grid">
+              <article class="info-card">
+                <h3>✈️ By Air</h3>
+                <p>The nearest airport is Gaggal Airport, Dharamshala, about 60–70 km from Palampur.</p>
+                <p>From the airport, pre-booked cabs can take you to the venue in roughly 1.5–2 hours.</p>
+              </article>
+
+              <article class="info-card">
+                <h3>🚂 By Train</h3>
+                <p>Nearest major railway stations are Pathankot and Chandigarh, from where taxis and private transfers are available.</p>
+                <p>From Pathankot, the journey to Palampur is scenic and usually takes 3–4 hours by road.</p>
+              </article>
+
+              <article class="info-card">
+                <h3>🚗 By Road</h3>
+                <p>Palampur is well connected from Delhi, Chandigarh, and nearby hill cities by road.</p>
+                <p>We recommend leaving early to enjoy the beautiful Himachal roads and avoid traffic delays.</p>
+              </article>
+            </div>
+          </section>
+
+          <!-- Stay Section -->
+          <section class="content-section" id="stay" data-index="4">
+            <div class="section-heading">
+              <p class="eyebrow accent">Comfort & Convenience</p>
+              <h2>Accommodations</h2>
+            </div>
+            <div class="stay-grid">
+              <article class="stay-card">
+                <h3>Mountain View Resort</h3>
+                <p>Premium stay with valley views and warm hospitality.</p>
+                <p class="meta">Approx. 15 mins from venue</p>
+              </article>
+
+              <article class="stay-card">
+                <h3>Himalayan Heights Hotel</h3>
+                <p>Comfortable rooms and family-friendly ambiance.</p>
+                <p class="meta">Approx. 20 mins from venue</p>
+              </article>
+
+              <article class="stay-card">
+                <h3>Forest Retreat Lodge</h3>
+                <p>Cozy stay with mountain charm and easy access to local attractions.</p>
+                <p class="meta">Approx. 12 mins from venue</p>
+              </article>
+            </div>
+            <div class="travel-note">
+              Please contact the family for hotel booking assistance or shuttle coordination from the airport/rail station.
+            </div>
+          </section>
+
+          <!-- RSVP Section -->
+          <section class="content-section" id="rsvp" data-index="5">
+            <div class="section-heading">
+              <p class="eyebrow accent">Join Us</p>
+              <h2>RSVP</h2>
+            </div>
+            <form id="rsvpForm" novalidate>
+              <div class="field-grid">
+                <label>
+                  Full Name
+                  <input type="text" name="name" placeholder="Your full name" required />
+                </label>
+
+                <label>
+                  Phone Number
+                  <input type="tel" name="phone" placeholder="Your contact number" required />
+                </label>
+
+                <label>
+                  Number of Guests
+                  <select name="guests" required>
+                    <option value="">Select</option>
+                    <option value="1">1 guest</option>
+                    <option value="2">2 guests</option>
+                    <option value="3">3 guests</option>
+                    <option value="4+">4+ guests</option>
+                  </select>
+                </label>
+
+                <label>
+                  Will you attend?
+                  <select name="attendance" required>
+                    <option value="">Select</option>
+                    <option value="Joyfully attending">Joyfully attending</option>
+                    <option value="Regretfully unable to attend">Regretfully unable to attend</option>
+                  </select>
+                </label>
+              </div>
+
+              <label>
+                Meal Preference
+                <select name="meal">
+                  <option value="Vegetarian">Vegetarian</option>
+                  <option value="Non-Vegetarian">Non-Vegetarian</option>
+                  <option value="No preference">No preference</option>
+                </select>
+              </label>
+
+              <label>
+                Message for the Couple
+                <textarea name="message" rows="4" placeholder="Share your warm wishes..."></textarea>
+              </label>
+
+              <button type="submit" class="btn btn-primary submit-btn">Send RSVP</button>
+            </form>
+
+            <div id="rsvpMessage" class="rsvp-message" aria-live="polite"></div>
+          </section>
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="section-nav">
+          <button class="nav-btn nav-prev" id="prevBtn" aria-label="Previous section" style="visibility: hidden;">
+            <span>← Back</span>
+          </button>
+          <button class="nav-btn nav-next" id="nextBtn" aria-label="Next section">
+            <span>Next →</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
