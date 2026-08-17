@@ -46,6 +46,10 @@ postcardFront.addEventListener("click", () => {
   postcardContainer.classList.add("postcard-open");
   document.body.classList.add("postcard-open");
   document.body.style.overflow = "hidden";
+  const sectionContent = document.querySelector(".section-content");
+  if (sectionContent) {
+    sectionContent.scrollTop = 0;
+  }
 });
 
 // Close postcard
@@ -54,7 +58,7 @@ closeCard.addEventListener("click", () => {
   postcardBack.classList.remove("opened");
   postcardContainer.classList.remove("postcard-open");
   document.body.classList.remove("postcard-open");
-  document.body.style.overflow = "auto";
+  document.body.style.overflow = "";
 });
 
 // Sequential section navigation
@@ -98,7 +102,7 @@ function showSection(index) {
   // Scroll to top of content
   const sectionContent = document.querySelector(".section-content");
   if (sectionContent) {
-    sectionContent.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    sectionContent.scrollTo({ top: 0, behavior: "smooth" });
   }
 }
 
