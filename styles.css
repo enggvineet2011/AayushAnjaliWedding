@@ -183,8 +183,8 @@ textarea {
   background: rgba(255, 250, 247, 0.95);
   border: 1px solid rgba(143, 114, 106, 0.12);
   padding: 1.8rem 1.8rem 1.2rem;
-  height: min(100dvh - 1.5rem, 1040px);
-  max-height: 1040px;
+  height: min(100dvh - clamp(1.5rem, 6vw, 4rem), 1040px);
+  max-height: min(100dvh - clamp(1.5rem, 6vw, 4rem), 1040px);
   width: min(1180px, 96vw);
   overflow: hidden;
   opacity: 0;
