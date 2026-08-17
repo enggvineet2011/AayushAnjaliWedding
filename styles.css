@@ -263,7 +263,21 @@ textarea {
   grid-template-columns: repeat(4, minmax(60px, 1fr));
   gap: 0.5rem;
   max-width: 400px;
+  margin: 0 auto;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s ease, max-height 0.35s ease, margin 0.35s ease;
+}
+
+.countdown-box.revealed {
   margin: 0 auto 0.6rem;
+  max-height: 140px;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .countdown-item {
@@ -609,6 +623,7 @@ textarea {
 }
 
 .event-date {
+  --reveal-progress: 0%;
   background: linear-gradient(180deg, rgba(184, 92, 111, 0.1), rgba(214, 179, 109, 0.14));
   border-radius: 14px;
   padding: 0.8rem 0.6rem;
@@ -620,10 +635,13 @@ textarea {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: hidden;
+  touch-action: none;
+  user-select: none;
 }
 
 .event-date::before {
-  content: "Scratch to Reveal";
+  content: "Scratch / Slide to Reveal";
   position: absolute;
   inset: 0;
   display: flex;
@@ -641,14 +659,22 @@ textarea {
   font-weight: 600;
   font-size: 0.9rem;
   opacity: 1;
-  transition: opacity 0.3s ease;
+  transform: translateX(var(--reveal-progress));
+  transition: transform 0.14s linear, opacity 0.3s ease;
   pointer-events: none;
   z-index: 10;
+  animation: scratchReveal 2s linear infinite;
+}
+
+.event-date.revealing::before {
+  transition-duration: 0.05s;
 }
 
 .event-date.scratched::before {
   opacity: 0;
+  transform: translateX(100%);
   pointer-events: none;
+  animation: none;
 }
 
 .event-date:hover {

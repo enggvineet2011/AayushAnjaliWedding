@@ -5,6 +5,20 @@ const countdownEls = {
   minutes: document.getElementById("minutes"),
   seconds: document.getElementById("seconds"),
 };
+const countdownBox = document.querySelector(".countdown-box");
+let countdownIntervalId = null;
+
+function setCountdownVisible(visible) {
+  if (!countdownBox) return;
+  countdownBox.classList.toggle("revealed", visible);
+  countdownBox.setAttribute("aria-hidden", String(!visible));
+}
+
+function startCountdown() {
+  if (countdownIntervalId !== null) return;
+  updateCountdown();
+  countdownIntervalId = setInterval(updateCountdown, 1000);
+}
 
 // Countdown timer
 function updateCountdown() {
@@ -30,8 +44,7 @@ function updateCountdown() {
   countdownEls.seconds.textContent = String(seconds).padStart(2, "0");
 }
 
-setInterval(updateCountdown, 1000);
-updateCountdown();
+setCountdownVisible(false);
 
 // Postcard interactivity
 const postcardFront = document.getElementById("postcardFront");
@@ -216,16 +229,21 @@ function createConfetti() {
 }
 
 // Scratch card effect for wedding dates
-const eventDates = document.querySelectorAll(".event-date");
+const eventDates = Array.from(document.querySelectorAll(".event-date"));
+let revealedDateCount = 0;
+
 eventDates.forEach((dateEl) => {
-  let isScratchedEnough = false;
-  let scratchedArea = 0;
-  const totalArea = dateEl.offsetWidth * dateEl.offsetHeight;
-  const revealThreshold = 0.3; // 30% of area needs to be scratched
+  let isRevealed = false;
+  let isPointerDown = false;
+  let maxRevealProgress = 0;
+  const revealThreshold = 0.55;
 
   function revealDate() {
-    if (!isScratchedEnough) {
-      isScratchedEnough = true;
+    if (!isRevealed) {
+      isRevealed = true;
+      revealedDateCount += 1;
+      dateEl.style.setProperty("--reveal-progress", "100%");
+      dateEl.classList.remove("revealing");
       dateEl.classList.add("scratched");
       
       // Add colorful effect to the parent section
@@ -235,64 +253,66 @@ eventDates.forEach((dateEl) => {
       }
       
       createConfetti();
+
+      if (revealedDateCount >= eventDates.length) {
+        setCountdownVisible(true);
+        startCountdown();
+      }
     }
   }
 
-  // Track mouse movement for scratch effect
-  let isMouseDown = false;
+  function updateRevealProgress(clientX) {
+    const rect = dateEl.getBoundingClientRect();
+    if (!rect.width) return;
+    const progress = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+    if (progress > maxRevealProgress) {
+      maxRevealProgress = progress;
+      dateEl.style.setProperty("--reveal-progress", `${Math.round(maxRevealProgress * 100)}%`);
+    }
+    if (maxRevealProgress >= revealThreshold) {
+      revealDate();
+    }
+  }
 
-  dateEl.addEventListener("mousedown", () => {
-    isMouseDown = true;
+  dateEl.addEventListener("pointerdown", (event) => {
+    if (isRevealed) return;
+    isPointerDown = true;
+    dateEl.classList.add("revealing");
+    if (dateEl.setPointerCapture) {
+      dateEl.setPointerCapture(event.pointerId);
+    }
+    updateRevealProgress(event.clientX);
   });
 
-  dateEl.addEventListener("mousemove", (e) => {
-    if (!isMouseDown || isScratchedEnough) return;
-    
-    const rect = dateEl.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
-    // Check if within bounds
-    if (x > 0 && x < rect.width && y > 0 && y < rect.height) {
-      scratchedArea += 50; // Increment scratched area
-      
-      if (scratchedArea >= totalArea * revealThreshold) {
-        revealDate();
+  dateEl.addEventListener("pointermove", (event) => {
+    if (!isPointerDown || isRevealed) return;
+    updateRevealProgress(event.clientX);
+  });
+
+  function endReveal(pointerId) {
+    isPointerDown = false;
+    if (!isRevealed) {
+      dateEl.classList.remove("revealing");
+    }
+    if (pointerId !== undefined && dateEl.releasePointerCapture) {
+      try {
+        dateEl.releasePointerCapture(pointerId);
+      } catch (error) {
+        // Ignore release errors for unsupported environments
       }
     }
+  }
+
+  dateEl.addEventListener("pointerup", (event) => endReveal(event.pointerId));
+  dateEl.addEventListener("pointercancel", (event) => endReveal(event.pointerId));
+  dateEl.addEventListener("pointerleave", () => {
+    if (!isPointerDown) return;
+    endReveal();
   });
 
-  dateEl.addEventListener("mouseup", () => {
-    isMouseDown = false;
-  });
-
-  dateEl.addEventListener("mouseleave", () => {
-    isMouseDown = false;
-  });
-
-  // Also support touch for mobile
-  dateEl.addEventListener("touchstart", () => {
-    isMouseDown = true;
-  });
-
-  dateEl.addEventListener("touchmove", (e) => {
-    if (!isMouseDown || isScratchedEnough) return;
-    
-    const touch = e.touches[0];
-    const rect = dateEl.getBoundingClientRect();
-    const x = touch.clientX - rect.left;
-    const y = touch.clientY - rect.top;
-    
-    if (x > 0 && x < rect.width && y > 0 && y < rect.height) {
-      scratchedArea += 50;
-      
-      if (scratchedArea >= totalArea * revealThreshold) {
-        revealDate();
-      }
+  dateEl.addEventListener("click", () => {
+    if (!isRevealed) {
+      revealDate();
     }
-  });
-
-  dateEl.addEventListener("touchend", () => {
-    isMouseDown = false;
   });
 });
