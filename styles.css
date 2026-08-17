@@ -368,7 +368,7 @@ textarea {
   pointer-events: auto;
   overflow: visible;
   padding-bottom: 0.5rem;
-  animation: fadeIn 0.35s ease forwards, heartbeat 1.6s ease-out 0.3s;
+  animation: fadeIn 0.35s ease forwards, romanticFade 1.8s ease-in-out 0.3s;
 }
 
 .celebration-backdrop {
@@ -450,7 +450,7 @@ textarea {
 }
 
 .content-section.active.colorful {
-  animation: fadeIn 0.35s ease forwards, heartbeat 1.6s ease-out 0.3s, rainbowGlow 2s ease-in-out;
+  animation: fadeIn 0.35s ease forwards, romanticFade 1.8s ease-in-out 0.3s, rainbowGlow 2s ease-in-out;
 }
 
 @keyframes rainbowGlow {
@@ -502,6 +502,18 @@ textarea {
   }
   40% {
     transform: scale(1);
+  }
+}
+
+@keyframes romanticFade {
+  0% {
+    opacity: 0.88;
+  }
+  45% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
