@@ -229,12 +229,12 @@ textarea {
 
 .postcard-header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 0.8rem;
 }
 
 .postcard-header h1 {
   font-family: "Cormorant Garamond", serif;
-  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
   margin: 0;
   letter-spacing: 0.02em;
@@ -250,43 +250,43 @@ textarea {
 }
 
 .sub-heading {
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   color: var(--muted);
-  margin: 0.8rem 0 1.5rem;
+  margin: 0.4rem 0 0.8rem;
 }
 
 /* Countdown */
 .countdown-box {
   display: grid;
-  grid-template-columns: repeat(4, minmax(80px, 1fr));
-  gap: 0.8rem;
-  max-width: 500px;
-  margin: 0 auto 1rem;
+  grid-template-columns: repeat(4, minmax(60px, 1fr));
+  gap: 0.5rem;
+  max-width: 400px;
+  margin: 0 auto 0.6rem;
 }
 
 .countdown-item {
-  background: linear-gradient(135deg, rgba(184, 92, 111, 0.08), rgba(214, 179, 109, 0.08));
-  border: 1px solid rgba(184, 92, 111, 0.15);
-  border-radius: 16px;
-  padding: 1rem 0.6rem;
+  background: linear-gradient(135deg, rgba(184, 92, 111, 0.07), rgba(214, 179, 109, 0.07));
+  border: 1px solid rgba(184, 92, 111, 0.13);
+  border-radius: 12px;
+  padding: 0.45rem 0.4rem;
   text-align: center;
 }
 
 .countdown-item span {
   display: block;
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-size: clamp(1.2rem, 2.5vw, 1.7rem);
   font-weight: 700;
   color: var(--rose-dark);
   line-height: 1.1;
 }
 
 .countdown-item small {
-  font-size: 0.65rem;
-  letter-spacing: 0.08em;
+  font-size: 0.6rem;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--muted);
   display: block;
-  margin-top: 0.3rem;
+  margin-top: 0.15rem;
 }
 
 /* Section Tabs - Hidden */
@@ -299,7 +299,7 @@ textarea {
   display: flex;
   justify-content: center;
   gap: 0.6rem;
-  margin-top: 1.5rem;
+  margin-top: 0.6rem;
   flex-wrap: wrap;
 }
 
