@@ -1074,11 +1074,11 @@ body.postcard-open .site-footer {
   }
 
   .postcard-header {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.4rem;
   }
 
   .section-content {
-    margin-top: 0.5rem;
+    margin-top: 0.25rem;
   }
 
   .timeline-item {
@@ -1102,7 +1102,20 @@ body.postcard-open .site-footer {
   }
 
   .countdown-box {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.3rem;
+  }
+
+  .countdown-item {
+    padding: 0.3rem 0.2rem;
+  }
+
+  .countdown-item span {
+    font-size: 1.1rem;
+  }
+
+  .countdown-item small {
+    font-size: 0.55rem;
   }
 
   .section-tabs {
@@ -1112,5 +1125,17 @@ body.postcard-open .site-footer {
   .tab-btn {
     padding: 0.6rem 0.8rem;
     font-size: 0.85rem;
+  }
+
+  .section-nav {
+    padding-top: 0.5rem;
+    padding-bottom: 0.25rem;
+    flex-wrap: wrap;
+  }
+
+  .nav-btn {
+    padding: 0.55rem 1rem;
+    font-size: 0.83rem;
+    flex-shrink: 0;
   }
 }
