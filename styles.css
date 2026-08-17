@@ -186,8 +186,7 @@ textarea {
   height: min(100dvh - 1.5rem, 1040px);
   max-height: 1040px;
   width: min(1180px, 96vw);
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden;
   opacity: 0;
   pointer-events: none;
   transform: scale(0.8) rotateX(-90deg);
@@ -229,7 +228,8 @@ textarea {
 
 .postcard-header {
   text-align: center;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.6rem;
+  flex-shrink: 0;
 }
 
 .postcard-header h1 {
@@ -328,8 +328,8 @@ textarea {
 /* Section Content */
 .section-content {
   position: relative;
-  margin: 1rem 0 0;
-  flex: 1 1 auto;
+  margin: 0.75rem 0 0;
+  flex: 1 1 0;
   min-height: 0;
   overflow-x: hidden;
   overflow-y: auto;
@@ -339,7 +339,6 @@ textarea {
   position: relative;
   display: none;
   width: 100%;
-  min-height: 100%;
   opacity: 0;
   pointer-events: none;
   overflow: visible;
@@ -352,6 +351,7 @@ textarea {
   opacity: 1;
   pointer-events: auto;
   overflow: visible;
+  padding-bottom: 0.5rem;
   animation: fadeIn 0.35s ease forwards, heartbeat 1.6s ease-out 0.3s;
 }
 
@@ -960,8 +960,9 @@ textarea {
   justify-content: space-between;
   align-items: center;
   gap: 0.8rem;
-  margin-top: auto;
-  padding-top: 0.9rem;
+  flex-shrink: 0;
+  padding-top: 0.75rem;
+  padding-bottom: 0.25rem;
   border-top: 1px solid rgba(184, 92, 111, 0.15);
 }
 
@@ -1033,20 +1034,24 @@ body.postcard-open .site-footer {
 }
 
 /* Scrollbar styling */
-.postcard-back::-webkit-scrollbar {
+.postcard-back::-webkit-scrollbar,
+.section-content::-webkit-scrollbar {
   width: 8px;
 }
 
-.postcard-back::-webkit-scrollbar-track {
+.postcard-back::-webkit-scrollbar-track,
+.section-content::-webkit-scrollbar-track {
   background: rgba(184, 92, 111, 0.05);
 }
 
-.postcard-back::-webkit-scrollbar-thumb {
+.postcard-back::-webkit-scrollbar-thumb,
+.section-content::-webkit-scrollbar-thumb {
   background: rgba(184, 92, 111, 0.3);
   border-radius: 999px;
 }
 
-.postcard-back::-webkit-scrollbar-thumb:hover {
+.postcard-back::-webkit-scrollbar-thumb:hover,
+.section-content::-webkit-scrollbar-thumb:hover {
   background: rgba(184, 92, 111, 0.5);
 }
 
@@ -1063,17 +1068,17 @@ body.postcard-open .site-footer {
 
   .postcard-back {
     width: 100%;
-    padding: 1.25rem 1rem 1rem;
+    padding: 1rem 1rem 0.75rem;
     height: calc(100dvh - 1.5rem);
     max-height: calc(100dvh - 1.5rem);
   }
 
   .postcard-header {
-    margin-bottom: 1.25rem;
+    margin-bottom: 0.75rem;
   }
 
   .section-content {
-    margin-top: 0.75rem;
+    margin-top: 0.5rem;
   }
 
   .timeline-item {
