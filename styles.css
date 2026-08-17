@@ -28,7 +28,8 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 a {
@@ -50,14 +51,14 @@ textarea {
 
 .postcard-container {
   flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
   padding: 2rem;
   min-height: 100vh;
   width: 100%;
   position: relative;
   z-index: 50;
+  overflow: hidden;
 }
 
 .postcard-container.postcard-open {
@@ -67,13 +68,14 @@ textarea {
   right: 0;
   bottom: 0;
   width: 100%;
-  height: 100vh;
-  padding: 2rem;
+  height: 100dvh;
+  padding: clamp(0.75rem, 3vw, 2rem);
   z-index: 9999;
   background: rgba(255, 250, 247, 0.98);
 }
 
 .postcard {
+  grid-area: 1 / 1;
   width: 100%;
   max-width: 900px;
   height: auto;
@@ -181,10 +183,11 @@ textarea {
   background: rgba(255, 250, 247, 0.95);
   border: 1px solid rgba(143, 114, 106, 0.12);
   padding: 1.8rem 1.8rem 1.2rem;
-  height: min(100vh, 1040px);
+  height: min(100dvh - 1.5rem, 1040px);
   max-height: 1040px;
   width: min(1180px, 96vw);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   opacity: 0;
   pointer-events: none;
   transform: scale(0.8) rotateX(-90deg);
@@ -328,15 +331,15 @@ textarea {
   margin: 1rem 0 0;
   flex: 1 1 auto;
   min-height: 0;
-  overflow: hidden;
-  height: 820px;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .content-section {
   position: relative;
   display: none;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   opacity: 0;
   pointer-events: none;
   overflow: visible;
@@ -1049,13 +1052,28 @@ body.postcard-open .site-footer {
 
 /* Responsive */
 @media (max-width: 640px) {
-  .postcard-container {
-    padding: 1rem;
+  .postcard-container,
+  .postcard-container.postcard-open {
+    padding: 0.75rem;
+  }
+
+  .postcard-front {
+    min-height: 70vh;
   }
 
   .postcard-back {
-    padding: 1.5rem;
-    max-height: calc(100vh - 2rem);
+    width: 100%;
+    padding: 1.25rem 1rem 1rem;
+    height: calc(100dvh - 1.5rem);
+    max-height: calc(100dvh - 1.5rem);
+  }
+
+  .postcard-header {
+    margin-bottom: 1.25rem;
+  }
+
+  .section-content {
+    margin-top: 0.75rem;
   }
 
   .timeline-item {
