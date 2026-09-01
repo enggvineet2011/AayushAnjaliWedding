@@ -7,6 +7,23 @@ const weddingDate = new Date("2027-01-18T00:00:00+05:30");
 const flowParam = new URLSearchParams(window.location.search).get("flow");
 const isWeddingOnly = flowParam === "wedding";
 
+// ── Access guard ──────────────────────────────────────────────────────────────
+// Only allow access via the short-path aliases (/w or /b) which set a valid
+// flow param. Accessing the root URL directly (no flow param, or an unknown
+// value) shows a generic "invalid link" screen instead of the invite.
+(function guardAccess() {
+  const validFlows = ["wedding", "both"];
+  if (!validFlows.includes(flowParam)) {
+    document.addEventListener("DOMContentLoaded", function () {
+      document.body.innerHTML =
+        '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:serif;text-align:center;padding:2rem;">' +
+        "<div><p style=\"font-size:1.4rem;color:#555;\">This link doesn't seem to be valid.</p>" +
+        "<p style=\"font-size:1rem;color:#999;\">Please use the invite link shared with you.</p></div>" +
+        "</div>";
+    });
+  }
+})();
+
 (function applyFlow() {
   if (isWeddingOnly) {
     // Update postcard front copy
