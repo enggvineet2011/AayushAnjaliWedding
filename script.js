@@ -1,4 +1,47 @@
 const weddingDate = new Date("2027-01-18T00:00:00+05:30");
+
+// ── Guided flow ──────────────────────────────────────────────────────────────
+// Supported values for the `flow` URL parameter:
+//   "wedding"  → Wedding invite only (engagement event hidden)
+//   "both"     → Engagement + Wedding invite (default)
+const flowParam = new URLSearchParams(window.location.search).get("flow");
+const isWeddingOnly = flowParam === "wedding";
+
+(function applyFlow() {
+  if (isWeddingOnly) {
+    // Update postcard front copy
+    const eyebrow = document.getElementById("postcardEyebrow");
+    if (eyebrow) eyebrow.textContent = "Wedding Invitation";
+
+    const tagline = document.getElementById("postcardTagline");
+    if (tagline) tagline.textContent = "Join us for our wedding celebration";
+
+    // Update page title
+    document.title = "Aayush & Anjali | Wedding Invitation";
+
+    // Hide engagement event from the schedule
+    const engagementEvent = document.getElementById("engagementEvent");
+    if (engagementEvent) engagementEvent.style.display = "none";
+
+    // Update schedule section heading
+    const scheduleHeading = document.getElementById("scheduleHeading");
+    if (scheduleHeading) scheduleHeading.textContent = "Wedding itinerary";
+  } else {
+    // Default "both" flow — postcard front reflects both events
+    const eyebrow = document.getElementById("postcardEyebrow");
+    if (eyebrow) eyebrow.textContent = "You're Invited";
+
+    const tagline = document.getElementById("postcardTagline");
+    if (tagline) tagline.textContent = "Celebrate love in the mountains";
+
+    document.title = "Aayush & Anjali | Wedding Invitation";
+
+    const scheduleHeading = document.getElementById("scheduleHeading");
+    if (scheduleHeading) scheduleHeading.textContent = "Events & itinerary";
+  }
+})();
+// ─────────────────────────────────────────────────────────────────────────────
+
 const countdownEls = {
   days: document.getElementById("days"),
   hours: document.getElementById("hours"),
@@ -229,7 +272,10 @@ function createConfetti() {
 }
 
 // Scratch card effect for wedding dates
-const eventDates = Array.from(document.querySelectorAll(".event-date"));
+// Only include dates whose parent timeline-item is visible (respects flow param)
+const eventDates = Array.from(document.querySelectorAll(".event-date")).filter(
+  (el) => el.closest(".timeline-item")?.style.display !== "none"
+);
 let revealedDateCount = 0;
 
 eventDates.forEach((dateEl) => {
